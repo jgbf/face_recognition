@@ -1,7 +1,6 @@
 from imutils import paths
 import face_recognition as frec
 import cv2
-import math
 from statistics import mean
 import numpy
 
