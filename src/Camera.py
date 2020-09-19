@@ -36,8 +36,6 @@ class Camera:
         # Convert scaled image to rgb 
         rgb_frame = small_frame[:, :, ::-1]
 
-        print(type(rgb_frame), type(frame))
-
         return rgb_frame, frame
 
     def __ramp_up(self, ramp:int=3):
@@ -77,6 +75,9 @@ class Camera:
         Args:
         image: Image from the webcam
         coords: Location of faces on the image
+        scale: Scaling of the imput image before forvarded to be encoded
+        color: Color of the drawn circle in (B, G, R) formatted tuple
+        thickness: Thickness of the drawn circle
 
         """
 
@@ -101,6 +102,15 @@ class Camera:
 
     def get_marked_image(self, scale:float=0.5, color:tuple=(205, 205, 205), 
                          thickness:int=2):
+        """
+        Read an image identify faces and draw a circle around them.
+
+        Args:
+        scale: Scaling of the imput image before forvarded to be encoded
+        color: Color of the drawn circle in (B, G, R) formatted tuple
+        thickness: Thickness of the drawn circle
+
+        """
 
         # Get frames from camera
         small_image, full_image = self._read_image(scale)
@@ -115,3 +125,27 @@ class Camera:
                 )
 
         return full_image
+
+    def stream(self, scale:float=0.5, color:tuple=(205, 205, 205), 
+               thickness:int=2):
+
+        """
+        Stream marked images in the right jpeg byte format
+
+        Args:
+        scale: Scaling of the imput image before forvarded to be encoded
+        color: Color of the drawn circle in (B, G, R) formatted tuple
+        thickness: Thickness of the drawn circle
+
+        """
+
+        while True:
+            frame = self.get_marked_image(scale, color, thickness)
+            ret, jpeg = cv2.imencode(".jpg", frame)
+
+            byte_coded = jpeg.tobytes()
+
+            yield (
+                b"--frame\r\n"
+                b"Content-Type: image/jpeg\r\n\r\n" + byte_coded + b"\r\n\r\n"
+                )
