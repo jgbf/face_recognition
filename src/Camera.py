@@ -45,6 +45,7 @@ class Camera:
         
         Args:
         ramp: number of ramping images on camera init
+        
         """
 
         for i in range(ramp):
@@ -54,6 +55,9 @@ class Camera:
     def _encode_image(self, image:numpy.ndarray):
         """
         Find faces on the image and calculate the encodings of the find images
+        
+        Args:
+        image: Downscaled image from the camera
 
         """
 
