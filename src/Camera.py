@@ -1,15 +1,27 @@
 from imutils import paths
-import face_recognition as frec
 import cv2
 from statistics import mean
-import numpy
+import numpy as np
+
+from Face import Face
 
 
 class Camera:
+    """
+    Class to handle camera and frame actions
 
-    def __init__(self, cam_id):
+    Args:
+    cam_id: Id of the used camera. 
+        To find out the camera id run 'ls -ltrh /dev/video*' command. 
+        If you use the docker image you have to pass it: 'dev/videoX:/dev/video0'
+    faces: Face object to handle encodings and face search
+
+    """
+
+    def __init__(self, cam_id:int, faces:Face):
         self.camera = cv2.VideoCapture(cam_id)
         self.__ramp_up()
+        self.faces = faces
 
     def __del__(self):
         self.camera.release()
@@ -52,25 +64,7 @@ class Camera:
             self.camera.read()
 
 
-    def _encode_image(self, image:numpy.ndarray):
-        """
-        Find faces on the image and calculate the encodings of the find images
-        
-        Args:
-        image: Downscaled image from the camera
-
-        """
-
-        # Get face locations on the given image
-        locations = frec.face_locations(image)
-
-        # Encode images on the given locations
-        encodings = frec.face_encodings(image, locations)
-
-        return locations, encodings
-
-
-    def _draw_circle(self, image:numpy.ndarray, coords:tuple, scale:float,
+    def _draw_circle(self, image:np.ndarray, coords:tuple, scale:float,
                     color:tuple=(205, 205, 205), thickness:int=2):
         """
         Draw a circle to the full frame image based on the found face on the 
@@ -104,6 +98,35 @@ class Camera:
         
         return drawn_image
 
+    def _add_name(self, image:np.ndarray, name:str, coords:tuple, 
+                  scale:float, color:tuple):
+        """
+        Write the given name to the picture
+
+        Args:
+        image: Image from the webcam
+        name: name to 
+        coords: Location of faces on the image
+        scale: Scaling of the imput image before forvarded to be encoded
+        color: Color of the drawn circle in (B, G, R) formatted tuple
+
+        """
+
+        # Calulate the scale multiplier
+        scale_multiplyer = 1 / scale
+
+        # Get upscaled coordinates
+        top, left, bot, right = [coord * scale_multiplyer for coord in coords]
+
+        # Calulate the target coords
+        position = (int(left) - 10, int(bot))
+
+        # Write text to the image
+        cv2.putText(image, name, position, cv2.FONT_HERSHEY_DUPLEX, 1, color, 3)
+
+
+
+
     def get_marked_image(self, scale:float=0.5, color:tuple=(205, 205, 205), 
                          thickness:int=2):
         """
@@ -120,13 +143,16 @@ class Camera:
         small_image, full_image = self._read_image(scale)
 
         # Find and encode faces
-        locations, face_encodings = self._encode_image(small_image)
+        locations, face_encodings = self.faces.encode_image(small_image)
 
         # Draw circles on the full frame
-        for loc in locations:
+        for enc, loc in zip(face_encodings, locations):
             full_image = self._draw_circle(
                     full_image, loc, scale, color, thickness
                 )
+            name = self.faces.get_matching_face(enc)
+
+            self._add_name(full_image, name, loc, scale, color)
 
         return full_image
 

@@ -4,6 +4,8 @@
 
 ### My files ###
 run
+face_database.db
+
 
 ### Flask ###
 instance/*
