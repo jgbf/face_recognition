@@ -1,0 +1,118 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat');
+
+.sidebar {
+    height: 100%;
+    width: 300px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #212121;
+    overflow-x: hidden;
+    padding-top: 10px;
+}
+
+.main {
+    margin-left: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.sidebar h1 {
+    margin: 5px;
+    font-family: 'Oswald', sans-serif;
+    color: #fff;
+}
+
+p {
+    margin: 0;
+    padding: 0;
+}
+
+.author {
+    margin-bottom: 2px;
+    margin-top: 16px;
+    font-family: 'Montserrat', sans-serif;
+    color: #fff;
+    text-align: center;
+}
+
+
+.source {
+    font-family: 'Montserrat', sans-serif;
+    color: #fff;
+    text-align: center;
+}
+
+.stream {
+    margin: auto;
+    margin-top: 32px;
+    width: 50%;
+    display: block;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+.button {
+    display: block;
+    border-radius: 4px;
+    background-color: #f4511e;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 28px;
+    padding: 20px;
+    width: 200px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: auto;
+    margin-top: 32px;
+    font-family: 'Oswald';
+
+}
+
+.button span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+}
+
+.button span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+}
+
+.button:hover span {
+    padding-right: 25px;
+}
+
+.button:hover span:after {
+    opacity: 1;
+    right: 0;
+}
+
+a:link {
+  color: #fff;
+  background-color: transparent;
+  text-decoration: underline;
+}
+a:visited {
+  color: #fff;
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+.name_form {
+    margin-bottom: 16px;
+}
+
+.form_content {
+    margin-left: 65px;
+}

@@ -1,14 +1,17 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Register Face</title>
-</head>
-<body>
-    <h1>Upload new File</h1>
-    <form method=post enctype=multipart/form-data>
-        <input type="text" name="name">
-        <input type=file name=file>
-        <input type=submit value=Upload>
-    </form>
-</body>
-</html>
+{% extends 'base_layout.html' %}
+
+{% block content %}
+    <div class="main">
+        <h1>Upload new File</h1>
+        <form method=post enctype=multipart/form-data>
+            <div class="form_content">
+            <div class="name_form">
+                <p>Name</p>
+                <input type="text" name="name">
+            </div>
+            <input type=file name=file>
+            </div>
+            <input type=submit value=Upload class="button">
+        </form>
+    </div>
+{% endblock %}

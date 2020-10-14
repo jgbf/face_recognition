@@ -1,9 +1,10 @@
-<!DOCTYPE html>
-<html lang = "en">
-<head>
-    <title>Face recognition</title>
-</head>
-<body>
-    <img src="{{ url_for('video_feed') }}" />
-</body>
-</html>
+{% extends 'base_layout.html' %}
+
+{% block content %}
+    <div class="main">
+        <img src="{{ url_for('video_feed') }}" class="stream" />
+        <a href="register">
+            <div class="button"><span>Add Face</span></div>
+        </a>
+    </div>
+{% endblock %}

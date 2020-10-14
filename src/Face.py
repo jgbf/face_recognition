@@ -63,16 +63,19 @@ class Face:
         
         """
 
-        # Calculate similatrity level for all stored faces 
-        distances = fr.face_distance(self.known_faces["encodings"], encoding)
-        # Get the index of the best matching face
-        best_match_index = np.argmin(distances)
         # Set default name
         name = "Unknown"
 
-        # Select the best matching face from known faces
-        if distances[best_match_index] < self.strictness:
-            name = self.known_faces["names"][best_match_index]
+        if len(self.known_faces["encodings"]) > 0:
+            # Calculate similatrity level for all stored faces 
+            distances = fr.face_distance(self.known_faces["encodings"], encoding)
+            
+            # Get the index of the best matching face
+            best_match_index = np.argmin(distances)
+        
+            # Select the best matching face from known faces
+            if distances[best_match_index] < self.strictness:
+                name = self.known_faces["names"][best_match_index]
 
         return name
 

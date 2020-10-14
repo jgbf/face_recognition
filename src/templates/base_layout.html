@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang = "en">
+<head>
+    <title>Face recognition</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/main.css') }}">
+</head>
+<body>
+    <div class="sidebar">
+        <h1>Face recognition demo</h1>
+        <hr>
+        <div class="author">
+            <b>
+                Author: <a target="_blank" href="https://github.com/jgbf">jgbf</a>
+            </b>
+        </div>
+        <div class="source">
+            <b>
+                <a 
+                target="_blank" 
+                href="https://github.com/jgbf/face_recognition">Source code
+                </a>
+            </b>
+        </div>
+    </div>
+    {% block content %}{% endblock %}
+</body>
+</html>
