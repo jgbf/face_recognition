@@ -3,7 +3,7 @@
 
 .sidebar {
     height: 100%;
-    width: 300px;
+    width: 332px;
     position: fixed;
     z-index: 1;
     top: 0;
@@ -14,7 +14,7 @@
 }
 
 .main {
-    margin-left: 300px;
+    margin-left: 332px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -115,4 +115,14 @@ a:visited {
 
 .form_content {
     margin-left: 65px;
+}
+
+.logo {
+    height: 29px;
+    margin-top: 15px;
+    margin-left: 8px;
+}
+
+.logo_group {
+    display: inline-flex;
 }
