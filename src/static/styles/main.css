@@ -3,7 +3,7 @@
 
 .sidebar {
     height: 100%;
-    width: 332px;
+    width: 363px;
     position: fixed;
     z-index: 1;
     top: 0;
@@ -14,7 +14,7 @@
 }
 
 .main {
-    margin-left: 332px;
+    margin-left: 363px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -110,11 +110,8 @@ a:visited {
 }
 
 .name_form {
+    display: block;
     margin-bottom: 16px;
-}
-
-.form_content {
-    margin-left: 65px;
 }
 
 .logo {
@@ -125,4 +122,40 @@ a:visited {
 
 .logo_group {
     display: inline-flex;
+    margin-left: 13px;
+}
+
+label{
+    display: block;
+    border-radius: 4px;
+    background-color: #212121;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 22px;
+    padding: 15px;
+    width: 128px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: auto;
+    margin-top: 32px;
+    font-family: 'Oswald';
+}
+
+#file_name {
+    text-align: center;
+    margin-top: 9px;
+    font-size: 20px;
+    font-family: 'Montserrat';
+}
+
+.name_form--input {
+    border:none;
+    border-bottom: 2px solid;
+    width: 210px;
+    font-size: 19px
+}
+
+.name_form--label {
+    font-family: 'Montserrat';
 }
