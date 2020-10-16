@@ -7,9 +7,12 @@
 <body>
     <div class="sidebar">
         <div class="logo_group">
-            <img src="{{ url_for('static',filename='logo.png') }}" class="logo">
+            <a href=" {{ url_for('index') }}">
+                <img src="{{ url_for('static',filename='logo.png') }}" class="logo">
+            </a>
             <h1>Face recognition demo</h1>
         </div>
+        
         <hr>
         <div class="author">
             <b>
