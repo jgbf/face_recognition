@@ -6,15 +6,26 @@
         <form method=post enctype=multipart/form-data>
             <div class="form_content">
             <div class="name_form">
-                <div class="name_form--label">Name</div>
+                <div class="name_form--label" required>Name</div>
                 <input type="text" name="name" class="name_form--input">
             </div>
-            <input type=file name=file id="file_upload" hidden>
+            <input type=file name=file id="file_upload" hidden required>
             <label for="file_upload">Select file</label>
             <div id="file_name"></div>
             </div>
             <input type=submit value=Upload class="button">
         </form>
+
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert_message" role="alert">
+                        <div class="upload--message">{{ message }}</div>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    
     </div>
     <script type="text/javascript" src="{{ url_for('static', filename='js/file_upload.js') }}"></script>
 {% endblock %}

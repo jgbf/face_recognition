@@ -159,3 +159,15 @@ label{
 .name_form--label {
     font-family: 'Montserrat';
 }
+
+.upload--message {
+    display: inline-block;
+    margin-right: 9px;
+}
+
+.alert_message {
+    margin-top: 16px;
+    background-color: #c3e8c3;
+    color: #183e18;
+    padding: 18px;
+}

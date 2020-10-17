@@ -1,5 +1,5 @@
 
-from flask import Flask, render_template, Response, request
+from flask import Flask, render_template, Response, request, flash
 
 from Camera import Camera
 from Database import Database
@@ -8,6 +8,7 @@ from Uploader import Uploader
 
 
 app = Flask(__name__)
+app.secret_key="aaaaaaa"
 UPLOAD_FOLDER = "."
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
@@ -35,6 +36,7 @@ def register():
 
         if filename:
             face.learn_face(filename, name)
+            flash(f"New face saved to database: {name}")
 
     return render_template("upload.html")
 
