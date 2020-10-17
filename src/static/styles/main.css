@@ -165,9 +165,16 @@ label{
     margin-right: 9px;
 }
 
-.alert_message {
+.success_message {
     margin-top: 16px;
     background-color: #c3e8c3;
     color: #183e18;
+    padding: 18px;
+}
+
+.warning_message {
+    margin-top: 16px;
+    background-color: #e67f7f;
+    color: #4a1212;
     padding: 18px;
 }

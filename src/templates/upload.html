@@ -16,10 +16,20 @@
             <input type=submit value=Upload class="button">
         </form>
 
-        {% with messages = get_flashed_messages() %}
+        {% with messages = get_flashed_messages(category_filter=["success"]) %}
             {% if messages %}
                 {% for message in messages %}
-                    <div class="alert_message" role="alert">
+                    <div class="success_message" role="alert">
+                        <div class="upload--message">{{ message }}</div>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        {% with messages = get_flashed_messages(category_filter=["warning"]) %}
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="warning_message" role="alert">
                         <div class="upload--message">{{ message }}</div>
                     </div>
                 {% endfor %}

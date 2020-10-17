@@ -103,22 +103,30 @@ class Face:
         image = self.read_image(path)
         # Remove image from disk
         os.remove(path)
+
         # Get face locations and encodings from image
         coords, encodings = self.encode_image(image)
         
-        # Set default index
-        selected_index = 0
+        if len(encodings) > 0:
+            # Set default index
+            selected_index = 0
 
-        # Get the biggest face on image
-        if len(encodings) > 1:
-            max_size = 0
+            # Get the biggest face on image
+            if len(encodings) > 1:
+                max_size = 0
 
-            for idx, coord in enumerate(coords):
-                # The biggest face is the one whit hte biggest area
-                size = (coord[2] - coord[0]) * (coord[1] - coord[3])
-                
-                if size > max_size:
-                    max_size = size
-                    selected_index = idx
+                for idx, coord in enumerate(coords):
+                    # The biggest face is the one whit hte biggest area
+                    size = (coord[2] - coord[0]) * (coord[1] - coord[3])
+                    
+                    if size > max_size:
+                        max_size = size
+                        selected_index = idx
 
-        self.save_face(name, encodings[selected_index])
+            # Save face to database
+            self.save_face(name, encodings[selected_index])
+
+            return True
+
+        # Face save success
+        return False

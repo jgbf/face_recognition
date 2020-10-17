@@ -35,8 +35,12 @@ def register():
         filename, name = uploader.upload()
 
         if filename:
-            face.learn_face(filename, name)
-            flash(f"New face saved to database: {name}")
+            success = face.learn_face(filename, name)
+            print(success)
+            if success:
+                flash(f"New face saved to database: {name}", "success")
+            else:
+                flash(f"No detected face on image", "warning")
 
     return render_template("upload.html")
 
