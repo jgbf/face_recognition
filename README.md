@@ -6,17 +6,28 @@ In the future I plan to test it on Windows and on WSL2.
 
 ## Install and run
  Open terminal and move to the cloned repository.
-### Docker
- 1. **Build image**
+### With Docker
+#### A) Download image from Dockerhub
+1. **Download Image**
+   ```bash
+   docker pull jgbf/face_recognition
+   ```
+2. **Run image**
     ```bash
-    docker build -t <image_name> .
+    docker run -p <your_port>:5000 --device /dev/video<camera_number>:/dev/video0 jgbf/face_recognition:latest
     ```
- 2. **Run image**
-    ```bash
-    docker run -p <your_port>:5000 --device /dev/video<camera_number>:/dev/video0
-    ```
+#### B) Build your own image from Dockerfile
+1. **Build image**
+   ```bash
+   docker build -t <image_name> .
+   ```
+2. **Run image**
+   ```bash
+   docker run -p <your_port>:5000 --device /dev/video<camera_number>:/dev/video0 <image_name>
+   ```
+    
 
-### Python
+### With Python
 1. **Create a virtualenv**
     ```bash
     virtualenv <env_name> -p 3
@@ -38,7 +49,7 @@ In the future I plan to test it on Windows and on WSL2.
     ```
 **Note:** 
 - You can use any free port to run the server as your_port value.
-- Default camera_number is 0 on your computer. To fin out camera device id-s run ```ls -ltrh /dev/video*```
+- Default camera_number is 0 on your computer. To find out camera device id-s run ```ls -ltrh /dev/video*```
 
 ## Usage:
 If everything went well during the previous step you will be able to check the running application in your browser. Just open ```127.0.0.1:<your_port>``` address.
