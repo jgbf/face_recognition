@@ -14,8 +14,8 @@ jobs:
         uses: actions/checkout@v2
       - name: Push to Docker Hub
         uses: mr-smithers-excellent/docker-build-push@v4
-          with:
-            image: jgbf/face_recognition
-            registry: docker.io
-            username: ${{ secrets.DOCKER_USERNAME }}
-            password: ${{ secrets.DOCKER_PASSWORD }}
+        with:
+          image: jgbf/face_recognition
+          registry: docker.io
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
