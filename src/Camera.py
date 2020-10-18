@@ -42,6 +42,9 @@ class Camera:
         # Read one frame from the camera
         ret, frame = self.camera.read()
 
+        # Flip image
+        frame = cv2.flip(frame, 1)
+
         # Scale down the image
         small_frame = cv2.resize(frame, (0, 0), fx=scale, fy=scale)
 
